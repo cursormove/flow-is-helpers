@@ -1,7 +1,7 @@
 {
   "name": "@artisin/flow-is-helpers",
   "version": "0.0.1",
-  "description": "A collection of Flow type (is) %checks helpers along with Lodash.",
+  "description": "Lodash (is) and additional Flow type %checks helpers.",
   "license": "MIT",
   "author": "te schultz",
   "main": "dist/flow-is-helpers.web.js",
