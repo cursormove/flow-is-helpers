@@ -1,0 +1,5349 @@
+---
+# Eslint config (annotated) → The pluggable linting utility for JavaScript and JSX
+# @homepage: https://eslint.org/
+
+################################################################################
+# 🠲 Configuration Cascading and Hierarchy
+# Limits this .eslintrc.* to a specific project.
+# @docs: https://eslint.org/docs/user-guide/configuring#configuration-cascading-and-hierarchy
+root: true
+
+
+################################################################################
+# 🠲 Parser
+# Specify the parser that should be used.
+# @docs: https://eslint.org/docs/user-guide/configuring#specifying-parser
+# @docs: https://github.com/babel/babel-eslint
+parser: babel-eslint
+
+
+################################################################################
+# 🠲 Specifying Parser Options
+# Setting parser options helps ESLint determine what is a parsing error. All
+# language options are false by default.
+# @docs: https://eslint.org/docs/user-guide/configuring#specifying-parser-options
+parserOptions:
+  # Set to 3, 5 (default), 6, 7, or 8 to specify the version of ECMAScript syntax
+  # you want to use
+  ecmaVersion: 6
+  # Set to "script" (default) or "module" if your code is in ECMAScript modules
+  sourceType: module
+  # An object indicating which additional language features you’d like to use
+  ecmaFeatures:
+    # allow return statements in the global scope.
+    globalReturn: false
+    # enable global strict mode (if ecmaVersion is 5 or greater)
+    # @docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+    impliedStrict: true
+    # enable JSX
+    # @docs: https://facebook.github.io/jsx/
+    jsx: false
+
+
+################################################################################
+# 🠲 Extends
+# A configuration file can extend the set of enabled rules from base configurations.
+# @docs: https://eslint.org/docs/user-guide/configuring#extending-configuration-files
+extends:
+  - eslint:recommended
+  # @docs: https://github.com/mysticatea/eslint-plugin-node
+  - plugin:node/recommended
+  # @docs: https://github.com/gajus/eslint-plugin-flowtype
+  - plugin:flowtype/recommended
+
+
+################################################################################
+# 🠲 Plugins
+# ESLint supports the use of third-party plugins. The eslint-plugin- prefix can
+# be omitted from the plugin name.
+# @docs: https://eslint.org/docs/user-guide/configuring#using-the-configuration-from-a-plugin
+# @note: (un-comment for use and install deps)
+plugins:
+  # @https://github.com/babel/eslint-plugin-babel
+  - babel
+  # @docs: https://github.com/mysticatea/eslint-plugin-node#readme
+  - node
+  # @docs: https://github.com/gajus/eslint-plugin-flowtype
+  - flowtype
+
+
+################################################################################
+# 🠲 Environments
+# An environment defines global variables that are predefined.
+# @docs: https://eslint.org/docs/user-guide/configuring#specifying-environments
+env:
+  # browser global variables
+  browser: false
+  # Node.js global variables and Node.js scoping
+  node: false
+  # CommonJS global variables and CommonJS scoping (use this for browser-only
+  # code that uses Browserify/WebPack)
+  commonjs: true
+  # enable all ECMAScript 6 features except for modules (this automatically sets
+  # the ecmaVersion parser option to 6)
+  es6: true
+  # web workers global variables
+  worker: false
+  # defines require() and define() as global variables as per the amd spec
+  amd: true
+  # adds all of the Mocha testing global variables
+  mocha: true
+  # adds all of the Jasmine testing global variables for version 1.3 and 2.0
+  jasmine: false
+  # Jest global variables
+  jest: false
+  # PhantomJS global variables
+  phantomjs: false
+  # Protractor global variables
+  protractor: false
+  # QUnit global variables
+  qunit: false
+  # jQuery global variables
+  jquery: false
+  # Prototype.js global variables
+  prototypejs: false
+  # ShellJS global variables
+  shelljs: false
+  # Meteor global variables
+  meteor: false
+  # MongoDB global variables.
+  mongo: false
+  # AppleScript global variables
+  applescript: false
+  # Java 8 Nashorn global variables
+  nashorn: false
+  # Service Worker global variables
+  serviceworker: false
+  # Atom test helper globals
+  atomtest: false
+  # Ember test helper globals
+  embertest: false
+  # WebExtensions globals
+  webextensions: false
+  # GreaseMonkey globals
+  greasemonkey: false
+
+
+################################################################################
+# 🠲 Globals
+# The no-undef rule will warn on variables that are accessed but not defined
+# within the same file. If you are using global variables inside of a file then
+# it’s worthwhile to define those globals so that ESLint will not warn about
+# their usage.
+# @docs: https://eslint.org/docs/user-guide/configuring#specifying-globals
+globals:
+  _: true
+  $: true
+  log: true
+  process: true
+  global: true
+  console: true
+
+
+################################################################################
+# 🠲 Settings
+# ESLint supports adding shared settings into configuration file. You can add
+# settings object to ESLint configuration file and it will be supplied to every
+# rule that will be executed.
+# @docs: https://eslint.org/docs/user-guide/configuring#adding-shared-settings
+# @note: (un-comment for use)
+settings:
+  # @docs: https://github.com/gajus/eslint-plugin-flowtype
+  flowtype:
+    # When true, only checks files with a @flow annotation in the first comment.
+    onlyFilesWithFlowAnnotation: true
+
+
+################################################################################
+# 🠲 Rules
+# Are grouped by category to help you understand their purpose. There's
+# a shit load of rules that can be custom tailored to your needs. I've added all
+# the rules with a description, schema, and a link to the docs to hopefully make
+# your life a bit easier.
+# @notes:
+#   + off   || 0 === turn the rule off
+#   + warn  || 1 === turn the rule on as a warning (doesn’t affect exit code)
+#   + error || 2 === turn the rule on as an error (exit code is 1 when triggered)
+# @docs: https://eslint.org/docs/rules/
+rules:
+
+
+################################################################################
+# 🠲 Node
+# @docs: https://github.com/mysticatea/eslint-plugin-node
+  node/no-unpublished-require: 0
+  node/no-unsupported-features/es-syntax: 0
+  node/no-unsupported-features/es-builtins: 0
+
+
+################################################################################
+# 🠲 Lodash
+# @docs: https://github.com/wix/eslint-plugin-lodash
+  lodash/import-scope: 0
+  lodash/prefer-lodash-method: 0
+  lodash/prefer-invoke-map: 0
+
+
+################################################################################
+# 🠲 Flow
+# @docs: https://github.com/gajus/eslint-plugin-flowtype
+  flowtype/boolean-style:
+    - 2
+    - boolean
+  flowtype/define-flow-type: 1
+  flowtype/delimiter-dangle:
+    - 1
+    - always
+  flowtype/generic-spacing:
+    - 2
+    - never
+  flowtype/no-primitive-constructor-types: 2
+  flowtype/no-types-missing-file-annotation: 2
+  flowtype/no-weak-types: 0
+  flowtype/object-type-delimiter:
+    - 2
+    - comma
+  flowtype/require-parameter-type: 2
+  flowtype/require-return-type:
+    - 2
+    - always
+    - annotateUndefined: never
+  flowtype/require-valid-file-annotation: 2
+  flowtype/semi:
+    - 2
+    - always
+  flowtype/space-after-type-colon:
+    - 2
+    - always
+  flowtype/space-before-generic-bracket:
+    - 2
+    - never
+  flowtype/space-before-type-colon:
+    - 2
+    - never
+  flowtype/type-id-match:
+    - 2
+    - "^([A-Z][a-z0-9]+)+Type$"
+  flowtype/union-intersection-spacing:
+    - 2
+    - always
+  flowtype/use-flow-type: 1
+  flowtype/valid-syntax: 1
+
+
+
+################################################################################
+# 🠲 Best Practices
+
+  # Enforce getter and setter pairs in objects
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "getWithoutSet": {
+  #         "type": "boolean"
+  #       },
+  #       "setWithoutGet": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/accessor-pairs
+  accessor-pairs: 0
+
+  # Enforce `return` statements in callbacks of array methods
+  # @docs: https://eslint.org/docs/rules/array-callback-return
+  array-callback-return: 0
+
+  # Enforce the use of variables within the scope they are defined
+  # @docs: https://eslint.org/docs/rules/block-scoped-var
+  block-scoped-var: 0
+
+  # Enforce that class methods utilize `this`
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptMethods": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/class-methods-use-this
+  class-methods-use-this: 0
+
+  # Enforce a maximum cyclomatic complexity allowed in a program
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "maximum": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/complexity
+  complexity: 0
+
+  # Require `return` statements to either always or never specify values
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "treatUndefinedAsUnspecified": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/consistent-return
+  consistent-return: 0
+
+  # Enforce consistent brace style for all control statements
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/curly
+  curly: 0
+
+  # Require `default` cases in `switch` statements
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "commentPattern": {
+  #         "type": "string"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/default-case
+  default-case: 0
+
+  # Enforce consistent newlines before and after dots
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "object",
+  #       "property"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/dot-location
+  dot-location:
+    - warn
+    - property
+
+  # Enforce dot notation whenever possible
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowKeywords": {
+  #         "type": "boolean"
+  #       },
+  #       "allowPattern": {
+  #         "type": "string"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/dot-notation
+  dot-notation: 0
+
+  # Require the use of `===` and `!==`
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/eqeqeq
+  eqeqeq: 0
+
+  # Require `for-in` loops to include an `if` statement
+  # @docs: https://eslint.org/docs/rules/guard-for-in
+  guard-for-in: 0
+
+  # Disallow the use of `alert`, `confirm`, and `prompt`
+  # @docs: https://eslint.org/docs/rules/no-alert
+  no-alert: 0
+
+  # Disallow the use of `arguments.caller` or `arguments.callee`
+  # @docs: https://eslint.org/docs/rules/no-caller
+  no-caller: 0
+
+  # Disallow lexical declarations in case clauses
+  # @docs: https://eslint.org/docs/rules/no-case-declarations
+  no-case-declarations: 0
+
+  # Disallow division operators explicitly at the beginning of regular
+  # expressions
+  # @docs: https://eslint.org/docs/rules/no-div-regex
+  no-div-regex: 0
+
+  # Disallow `else` blocks after `return` statements in `if` statements
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowElseIf": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-else-return
+  no-else-return: 0
+
+  # Disallow empty functions
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allow": {
+  #         "type": "array",
+  #         "items": {
+  #           "enum": [
+  #             "functions",
+  #             "arrowFunctions",
+  #             "generatorFunctions",
+  #             "methods",
+  #             "generatorMethods",
+  #             "getters",
+  #             "setters",
+  #             "constructors"
+  #           ]
+  #         },
+  #         "uniqueItems": true
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-empty-function
+  no-empty-function: 0
+
+  # Disallow empty destructuring patterns
+  # @docs: https://eslint.org/docs/rules/no-empty-pattern
+  no-empty-pattern: 0
+
+  # Disallow `null` comparisons without type-checking operators
+  # @docs: https://eslint.org/docs/rules/no-eq-null
+  no-eq-null: 0
+
+  # Disallow the use of `eval()`
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowIndirect": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-eval
+  no-eval: 0
+
+  # Disallow extending native types
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         },
+  #         "uniqueItems": true
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-extend-native
+  no-extend-native: 0
+
+  # Disallow unnecessary calls to `.bind()`
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-extra-bind
+  no-extra-bind: 0
+
+  # Disallow unnecessary labels
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-extra-label
+  no-extra-label: 0
+
+  # Disallow fallthrough of `case` statements
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "commentPattern": {
+  #         "type": "string"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-fallthrough
+  no-fallthrough: 0
+
+  # Disallow leading or trailing decimal points in numeric literals
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-floating-decimal
+  no-floating-decimal: 0
+
+  # Disallow assignments to native objects or read-only global variables
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         },
+  #         "uniqueItems": true
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-global-assign
+  no-global-assign: 0
+
+  # Disallow shorthand type conversions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "boolean": {
+  #         "type": "boolean"
+  #       },
+  #       "number": {
+  #         "type": "boolean"
+  #       },
+  #       "string": {
+  #         "type": "boolean"
+  #       },
+  #       "allow": {
+  #         "type": "array",
+  #         "items": {
+  #           "enum": [
+  #             "~",
+  #             "!!",
+  #             "+",
+  #             "*"
+  #           ]
+  #         },
+  #         "uniqueItems": true
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-implicit-coercion
+  no-implicit-coercion: 0
+
+  # Disallow variable and `function` declarations in the global scope
+  # @docs: https://eslint.org/docs/rules/no-implicit-globals
+  no-implicit-globals: 0
+
+  # Disallow the use of `eval()`-like methods
+  # @docs: https://eslint.org/docs/rules/no-implied-eval
+  no-implied-eval: 0
+
+  # Disallow `this` keywords outside of classes or class-like objects
+  # @docs: https://eslint.org/docs/rules/no-invalid-this
+  no-invalid-this: 0
+
+  # Disallow the use of the `__iterator__` property
+  # @docs: https://eslint.org/docs/rules/no-iterator
+  no-iterator: 0
+
+  # Disallow labeled statements
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowLoop": {
+  #         "type": "boolean"
+  #       },
+  #       "allowSwitch": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-labels
+  no-labels: 0
+
+  # Disallow unnecessary nested blocks
+  # @docs: https://eslint.org/docs/rules/no-lone-blocks
+  no-lone-blocks: 0
+
+  # Disallow `function` declarations and expressions inside loop statements
+  # @docs: https://eslint.org/docs/rules/no-loop-func
+  no-loop-func: 0
+
+  # Disallow magic numbers
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "detectObjects": {
+  #         "type": "boolean"
+  #       },
+  #       "enforceConst": {
+  #         "type": "boolean"
+  #       },
+  #       "ignore": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "number"
+  #         },
+  #         "uniqueItems": true
+  #       },
+  #       "ignoreArrayIndexes": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-magic-numbers
+  no-magic-numbers:
+    - error
+    - !!map
+        ignore:
+          - -1
+          - 0
+          - 1
+          - 2
+        ignoreArrayIndexes: true
+        enforceConst: true
+
+
+  # Disallow multiple spaces
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "object",
+  #         "patternProperties": {
+  #           "^([A-Z][a-z]*)+$": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       "ignoreEOLComments": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-multi-spaces
+  no-multi-spaces: 0
+
+  # Disallow multiline strings
+  # @docs: https://eslint.org/docs/rules/no-multi-str
+  no-multi-str: 0
+
+  # Disallow `new` operators with the `Function` object
+  # @docs: https://eslint.org/docs/rules/no-new-func
+  no-new-func: 0
+
+  # Disallow `new` operators with the `String`, `Number`, and `Boolean` objects
+  # @docs: https://eslint.org/docs/rules/no-new-wrappers
+  no-new-wrappers: 0
+
+  # Disallow `new` operators outside of assignments or comparisons
+  # @docs: https://eslint.org/docs/rules/no-new
+  no-new: 0
+
+  # Disallow octal escape sequences in string literals
+  # @docs: https://eslint.org/docs/rules/no-octal-escape
+  no-octal-escape: 0
+
+  # Disallow octal literals
+  # @docs: https://eslint.org/docs/rules/no-octal
+  no-octal: 0
+
+  # Disallow reassigning `function` parameters
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "props": {
+  #             "enum": [
+  #               false
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "props": {
+  #             "enum": [
+  #               true
+  #             ]
+  #           },
+  #           "ignorePropertyModificationsFor": {
+  #             "type": "array",
+  #             "items": {
+  #               "type": "string"
+  #             },
+  #             "uniqueItems": true
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-param-reassign
+  no-param-reassign:
+    - warn
+    - !!map
+        props: false
+
+  # Disallow the use of the `__proto__` property
+  # @docs: https://eslint.org/docs/rules/no-proto
+  no-proto: 0
+
+  # Disallow variable redeclaration
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "builtinGlobals": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-redeclare
+  no-redeclare:
+    - error
+    - !!map
+        builtinGlobals: true
+
+  # Disallow certain properties on certain objects
+  # @docs: https://eslint.org/docs/rules/no-restricted-properties
+  no-restricted-properties: 0
+
+  # Disallow assignment operators in `return` statements
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "except-parens",
+  #       "always"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-return-assign
+  no-return-assign:
+    - error
+    - always
+
+  # Disallow unnecessary `return await`
+  # @docs: https://eslint.org/docs/rules/no-return-await
+  no-return-await: 0
+
+  # Disallow `javascript:` urls
+  # @docs: https://eslint.org/docs/rules/no-script-url
+  no-script-url: 0
+
+  # Disallow assignments where both sides are exactly the same
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "props": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-self-assign
+  no-self-assign:
+    - error
+    - !!map
+        props: true
+
+  # Disallow comparisons where both sides are exactly the same
+  # @docs: https://eslint.org/docs/rules/no-self-compare
+  no-self-compare: 0
+
+  # Disallow comma operators
+  # @docs: https://eslint.org/docs/rules/no-sequences
+  no-sequences: 0
+
+  # Disallow throwing literals as exceptions
+  # @docs: https://eslint.org/docs/rules/no-throw-literal
+  no-throw-literal: 0
+
+  # Disallow unmodified loop conditions
+  # @docs: https://eslint.org/docs/rules/no-unmodified-loop-condition
+  no-unmodified-loop-condition: 0
+
+  # Disallow unused expressions
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowShortCircuit": {
+  #         "type": "boolean"
+  #       },
+  #       "allowTernary": {
+  #         "type": "boolean"
+  #       },
+  #       "allowTaggedTemplates": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-unused-expressions
+  no-unused-expressions: 0
+
+  # Disallow unused labels
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-unused-labels
+  no-unused-labels: 0
+
+  # Disallow unnecessary calls to `.call()` and `.apply()`
+  # @docs: https://eslint.org/docs/rules/no-useless-call
+  no-useless-call: 0
+
+  # Disallow unnecessary concatenation of literals or template literals
+  # @docs: https://eslint.org/docs/rules/no-useless-concat
+  no-useless-concat: 0
+
+  # Disallow unnecessary escape characters
+  # @docs: https://eslint.org/docs/rules/no-useless-escape
+  no-useless-escape: 0
+
+  # Disallow redundant return statements
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-useless-return
+  no-useless-return: 0
+
+  # Disallow `void` operators
+  # @docs: https://eslint.org/docs/rules/no-void
+  no-void: 0
+
+  # Disallow specified warning terms in comments
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "terms": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "location": {
+  #         "enum": [
+  #           "start",
+  #           "anywhere"
+  #         ]
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-warning-comments
+  no-warning-comments: 0
+
+  # Disallow `with` statements
+  # @docs: https://eslint.org/docs/rules/no-with
+  no-with: 0
+
+  # Require using Error objects as Promise rejection reasons
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowEmptyReject": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/prefer-promise-reject-errors
+  prefer-promise-reject-errors: 0
+
+  # Enforce the consistent use of the radix argument when using `parseInt()`
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "as-needed"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/radix
+  radix: 0
+
+  # Disallow async functions which have no `await` expression
+  # @docs: https://eslint.org/docs/rules/require-await
+  require-await: 0
+
+  # Require `var` declarations be placed at the top of their containing scope
+  # @docs: https://eslint.org/docs/rules/vars-on-top
+  vars-on-top: 0
+
+  # Require parentheses around immediate `function` invocations
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "outside",
+  #       "inside",
+  #       "any"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "functionPrototypeMethods": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/wrap-iife
+  wrap-iife:
+    - error
+    - inside
+
+  # Require or disallow "Yoda" conditions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptRange": {
+  #         "type": "boolean"
+  #       },
+  #       "onlyEquality": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/yoda
+  yoda: 0
+
+################################################################################
+# 🠲 🠲 Strict Mode
+  # Require or disallow strict mode directives
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "never",
+  #       "global",
+  #       "function",
+  #       "safe"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/strict
+  strict:
+    - error
+    - global
+
+################################################################################
+# 🠲 Variables
+
+  # Require or disallow initialization in variable declarations
+  # @docs: https://eslint.org/docs/rules/init-declarations
+  init-declarations:
+    - error
+    - always
+
+  # Disallow `catch` clause parameters from shadowing variables in the outer
+  # scope
+  # @docs: https://eslint.org/docs/rules/no-catch-shadow
+  no-catch-shadow: 0
+
+  # Disallow deleting variables
+  # @docs: https://eslint.org/docs/rules/no-delete-var
+  no-delete-var: 0
+
+  # Disallow labels that share a name with a variable
+  # @docs: https://eslint.org/docs/rules/no-label-var
+  no-label-var: 0
+
+  # Disallow specified global variables
+  # @docs: https://eslint.org/docs/rules/no-restricted-globals
+  no-restricted-globals: 0
+
+  # Disallow identifiers from shadowing restricted names
+  # @docs: https://eslint.org/docs/rules/no-shadow-restricted-names
+  no-shadow-restricted-names: 0
+
+  # Disallow variable declarations from shadowing variables declared in the outer scope
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "builtinGlobals": {
+  #         "type": "boolean"
+  #       },
+  #       "hoist": {
+  #         "enum": [
+  #           "all",
+  #           "functions",
+  #           "never"
+  #         ]
+  #       },
+  #       "allow": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-shadow
+  no-shadow:
+    - error
+    - !!map
+        hoist: functions
+        allow:
+          - callback
+          - cb
+          - done
+          - e
+          - err
+          - error
+          - ex
+          - reject
+          - resolve
+
+
+  # Disallow initializing variables to `undefined`
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-undef-init
+  no-undef-init: 0
+
+  # Disallow the use of undeclared variables unless mentioned in `/*global */`
+  # comments
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "typeof": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-undef
+  no-undef:
+    - error
+    - !!map
+        typeof: true
+
+  # Disallow the use of `undefined` as an identifier
+  # @docs: https://eslint.org/docs/rules/no-undefined
+  no-undefined: 0
+
+  # Disallow unused variables
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "all",
+  #           "local"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "vars": {
+  #             "enum": [
+  #               "all",
+  #               "local"
+  #             ]
+  #           },
+  #           "varsIgnorePattern": {
+  #             "type": "string"
+  #           },
+  #           "args": {
+  #             "enum": [
+  #               "all",
+  #               "after-used",
+  #               "none"
+  #             ]
+  #           },
+  #           "ignoreRestSiblings": {
+  #             "type": "boolean"
+  #           },
+  #           "argsIgnorePattern": {
+  #             "type": "string"
+  #           },
+  #           "caughtErrors": {
+  #             "enum": [
+  #               "all",
+  #               "none"
+  #             ]
+  #           },
+  #           "caughtErrorsIgnorePattern": {
+  #             "type": "string"
+  #           }
+  #         }
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-unused-vars
+  no-unused-vars: 1
+
+  # Disallow the use of variables before they are defined
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "nofunc"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "functions": {
+  #             "type": "boolean"
+  #           },
+  #           "classes": {
+  #             "type": "boolean"
+  #           },
+  #           "variables": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-use-before-define
+  no-use-before-define: 0
+
+
+################################################################################
+# 🠲 Node.js and CommonJS
+
+  # Require `return` statements after callbacks
+  # @schema:
+  # [
+  #   {
+  #     "type": "array",
+  #     "items": {
+  #       "type": "string"
+  #     }
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/callback-return
+  callback-return: 0
+
+  # Require `require()` calls to be placed at top-level module scope
+  # @docs: https://eslint.org/docs/rules/global-require
+  global-require: 0
+
+  # Require error handling in callbacks
+  # @schema:
+  # [
+  #   {
+  #     "type": "string"
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/handle-callback-err
+  handle-callback-err: 0
+
+  # Disallow use of the Buffer() constructor
+  # @docs: https://eslint.org/docs/rules/no-buffer-constructor
+  no-buffer-constructor: 0
+
+  # Disallow `require` calls to be mixed with regular variable declarations
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "boolean"
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "grouping": {
+  #             "type": "boolean"
+  #           },
+  #           "allowCall": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-mixed-requires
+  no-mixed-requires:
+    - error
+    - !!map
+        grouping: true
+        allowCall: true
+
+  # Disallow `new` operators with calls to `require`
+  # @docs: https://eslint.org/docs/rules/no-new-require
+  no-new-require: 0
+
+  # Disallow string concatenation with `__dirname` and `__filename`
+  # @docs: https://eslint.org/docs/rules/no-path-concat
+  no-path-concat: 0
+
+  # Disallow the use of `process.env`
+  # @docs: https://eslint.org/docs/rules/no-process-env
+  no-process-env: 0
+
+  # Disallow the use of `process.exit()`
+  # @docs: https://eslint.org/docs/rules/no-process-exit
+  no-process-exit: 0
+
+  # Disallow specified modules when loaded by `require`
+  # @docs: https://eslint.org/docs/rules/no-restricted-modules
+  no-restricted-modules: 0
+
+  # Disallow synchronous methods
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowAtRootLevel": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-sync
+  no-sync: 1
+
+
+################################################################################
+# 🠲 Stylistic Issues
+
+  # Enforce linebreaks after opening and before closing array brackets
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never",
+  #           "consistent"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "multiline": {
+  #             "type": "boolean"
+  #           },
+  #           "minItems": {
+  #             "type": [
+  #               "integer",
+  #               "null"
+  #             ],
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/array-bracket-newline
+  array-bracket-newline: 0
+
+  # Enforce consistent spacing inside array brackets
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "singleValue": {
+  #         "type": "boolean"
+  #       },
+  #       "objectsInArrays": {
+  #         "type": "boolean"
+  #       },
+  #       "arraysInArrays": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/array-bracket-spacing
+  array-bracket-spacing: 0
+
+  # Enforce line breaks after each array element
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "multiline": {
+  #             "type": "boolean"
+  #           },
+  #           "minItems": {
+  #             "type": [
+  #               "integer",
+  #               "null"
+  #             ],
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/array-element-newline
+  array-element-newline: 0
+
+  # Disallow or enforce spaces inside of blocks after opening block and before
+  # closing block
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/block-spacing
+  block-spacing: 0
+
+  # Enforce consistent brace style for blocks
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "1tbs",
+  #       "stroustrup",
+  #       "allman"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowSingleLine": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/brace-style
+  brace-style:
+    - error
+    - 1tbs
+    - !!map
+        allowSingleLine: true
+
+  # Enforce camelcase naming convention
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "properties": {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/camelcase
+  camelcase: 0
+
+  # Enforce or disallow capitalization of the first letter of a comment
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "ignorePattern": {
+  #             "type": "string"
+  #           },
+  #           "ignoreInlineComments": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreConsecutiveComments": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "line": {
+  #             "type": "object",
+  #             "properties": {
+  #               "ignorePattern": {
+  #                 "type": "string"
+  #               },
+  #               "ignoreInlineComments": {
+  #                 "type": "boolean"
+  #               },
+  #               "ignoreConsecutiveComments": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "block": {
+  #             "type": "object",
+  #             "properties": {
+  #               "ignorePattern": {
+  #                 "type": "string"
+  #               },
+  #               "ignoreInlineComments": {
+  #                 "type": "boolean"
+  #               },
+  #               "ignoreConsecutiveComments": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/capitalized-comments
+  capitalized-comments: 0
+
+  # Require or disallow trailing commas
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/comma-dangle
+  comma-dangle: 0
+
+  # Enforce consistent spacing before and after commas
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "before": {
+  #         "type": "boolean"
+  #       },
+  #       "after": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/comma-spacing
+  comma-spacing: 0
+
+  # Enforce consistent comma style
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "first",
+  #       "last"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "object",
+  #         "additionalProperties": {
+  #           "type": "boolean"
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/comma-style
+  comma-style: 0
+
+  # Enforce consistent spacing inside computed property brackets
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/computed-property-spacing
+  computed-property-spacing: 0
+
+  # Enforce consistent naming when capturing the current execution context
+  # @docs: https://eslint.org/docs/rules/consistent-this
+  consistent-this: 0
+
+  # Require or disallow newline at the end of files
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never",
+  #       "unix",
+  #       "windows"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/eol-last
+  eol-last: 0
+
+  # Require or disallow spacing between function identifiers and their
+  # invocations
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/func-call-spacing
+  func-call-spacing: 0
+
+  # Require function names to match the name of the variable or property to which
+  # they are assigned
+  # @docs: https://eslint.org/docs/rules/func-name-matching
+  func-name-matching: 0
+
+  # Require or disallow named `function` expressions
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "as-needed",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/func-names
+  func-names: 0
+
+  # Enforce the consistent use of either `function` declarations or expressions
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "declaration",
+  #       "expression"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowArrowFunctions": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/func-style
+  func-style:
+    - error
+    - expression
+    - !!map
+        allowArrowFunctions: true
+
+  # Enforce consistent line breaks inside function parentheses
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never",
+  #           "consistent",
+  #           "multiline"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "minItems": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/function-paren-newline
+  function-paren-newline:
+    - warn
+    - multiline
+
+  # Disallow specified identifiers
+  # @docs: https://eslint.org/docs/rules/id-blacklist
+  id-blacklist: 0
+
+  # Enforce minimum and maximum identifier lengths
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "min": {
+  #         "type": "number"
+  #       },
+  #       "max": {
+  #         "type": "number"
+  #       },
+  #       "exceptions": {
+  #         "type": "array",
+  #         "uniqueItems": true,
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "properties": {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/id-length
+  id-length: 0
+
+  # Require identifiers to match a specified regular expression
+  # @schema:
+  # [
+  #   {
+  #     "type": "string"
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "properties": {
+  #         "type": "boolean"
+  #       }
+  #     }
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/id-match
+  id-match: 0
+
+  # Enforce the location of arrow function bodies
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "beside",
+  #       "below"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/implicit-arrow-linebreak
+  implicit-arrow-linebreak: 0
+
+  # Enforce consistent indentation
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "tab"
+  #         ]
+  #       },
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       }
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "SwitchCase": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "VariableDeclarator": {
+  #         "oneOf": [
+  #           {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           {
+  #             "type": "object",
+  #             "properties": {
+  #               "var": {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               "let": {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               "const": {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         ]
+  #       },
+  #       "outerIIFEBody": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "MemberExpression": {
+  #         "oneOf": [
+  #           {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           {
+  #             "enum": [
+  #               "off"
+  #             ]
+  #           }
+  #         ]
+  #       },
+  #       "FunctionDeclaration": {
+  #         "type": "object",
+  #         "properties": {
+  #           "parameters": {
+  #             "oneOf": [
+  #               {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               {
+  #                 "enum": [
+  #                   "first",
+  #                   "off"
+  #                 ]
+  #               }
+  #             ]
+  #           },
+  #           "body": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       "FunctionExpression": {
+  #         "type": "object",
+  #         "properties": {
+  #           "parameters": {
+  #             "oneOf": [
+  #               {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               {
+  #                 "enum": [
+  #                   "first",
+  #                   "off"
+  #                 ]
+  #               }
+  #             ]
+  #           },
+  #           "body": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       "CallExpression": {
+  #         "type": "object",
+  #         "properties": {
+  #           "arguments": {
+  #             "oneOf": [
+  #               {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               {
+  #                 "enum": [
+  #                   "first",
+  #                   "off"
+  #                 ]
+  #               }
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       "ArrayExpression": {
+  #         "oneOf": [
+  #           {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           {
+  #             "enum": [
+  #               "first",
+  #               "off"
+  #             ]
+  #           }
+  #         ]
+  #       },
+  #       "ObjectExpression": {
+  #         "oneOf": [
+  #           {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           {
+  #             "enum": [
+  #               "first",
+  #               "off"
+  #             ]
+  #           }
+  #         ]
+  #       },
+  #       "ImportDeclaration": {
+  #         "oneOf": [
+  #           {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           {
+  #             "enum": [
+  #               "first",
+  #               "off"
+  #             ]
+  #           }
+  #         ]
+  #       },
+  #       "flatTernaryExpressions": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoredNodes": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string",
+  #           "not": {
+  #             "pattern": ":exit$"
+  #           }
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/indent
+  indent:
+    - warn
+    - 2
+    - !!map
+        SwitchCase: 2
+        VariableDeclarator:
+          var: 2
+          let: 2
+          const: 3
+
+  # Enforce the consistent use of either double or single quotes in JSX
+  # attributes
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "prefer-single",
+  #       "prefer-double"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/jsx-quotes
+  jsx-quotes: 0
+
+  # Enforce consistent spacing between keys and values in object literal
+  # properties
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "anyOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "align": {
+  #             "anyOf": [
+  #               {
+  #                 "enum": [
+  #                   "colon",
+  #                   "value"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "mode": {
+  #                     "enum": [
+  #                       "strict",
+  #                       "minimum"
+  #                     ]
+  #                   },
+  #                   "on": {
+  #                     "enum": [
+  #                       "colon",
+  #                       "value"
+  #                     ]
+  #                   },
+  #                   "beforeColon": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "afterColon": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false
+  #               }
+  #             ]
+  #           },
+  #           "mode": {
+  #             "enum": [
+  #               "strict",
+  #               "minimum"
+  #             ]
+  #           },
+  #           "beforeColon": {
+  #             "type": "boolean"
+  #           },
+  #           "afterColon": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "singleLine": {
+  #             "type": "object",
+  #             "properties": {
+  #               "mode": {
+  #                 "enum": [
+  #                   "strict",
+  #                   "minimum"
+  #                 ]
+  #               },
+  #               "beforeColon": {
+  #                 "type": "boolean"
+  #               },
+  #               "afterColon": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "multiLine": {
+  #             "type": "object",
+  #             "properties": {
+  #               "align": {
+  #                 "anyOf": [
+  #                   {
+  #                     "enum": [
+  #                       "colon",
+  #                       "value"
+  #                     ]
+  #                   },
+  #                   {
+  #                     "type": "object",
+  #                     "properties": {
+  #                       "mode": {
+  #                         "enum": [
+  #                           "strict",
+  #                           "minimum"
+  #                         ]
+  #                       },
+  #                       "on": {
+  #                         "enum": [
+  #                           "colon",
+  #                           "value"
+  #                         ]
+  #                       },
+  #                       "beforeColon": {
+  #                         "type": "boolean"
+  #                       },
+  #                       "afterColon": {
+  #                         "type": "boolean"
+  #                       }
+  #                     },
+  #                     "additionalProperties": false
+  #                   }
+  #                 ]
+  #               },
+  #               "mode": {
+  #                 "enum": [
+  #                   "strict",
+  #                   "minimum"
+  #                 ]
+  #               },
+  #               "beforeColon": {
+  #                 "type": "boolean"
+  #               },
+  #               "afterColon": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "singleLine": {
+  #             "type": "object",
+  #             "properties": {
+  #               "mode": {
+  #                 "enum": [
+  #                   "strict",
+  #                   "minimum"
+  #                 ]
+  #               },
+  #               "beforeColon": {
+  #                 "type": "boolean"
+  #               },
+  #               "afterColon": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "multiLine": {
+  #             "type": "object",
+  #             "properties": {
+  #               "mode": {
+  #                 "enum": [
+  #                   "strict",
+  #                   "minimum"
+  #                 ]
+  #               },
+  #               "beforeColon": {
+  #                 "type": "boolean"
+  #               },
+  #               "afterColon": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "align": {
+  #             "type": "object",
+  #             "properties": {
+  #               "mode": {
+  #                 "enum": [
+  #                   "strict",
+  #                   "minimum"
+  #                 ]
+  #               },
+  #               "on": {
+  #                 "enum": [
+  #                   "colon",
+  #                   "value"
+  #                 ]
+  #               },
+  #               "beforeColon": {
+  #                 "type": "boolean"
+  #               },
+  #               "afterColon": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/key-spacing
+  key-spacing: 0
+
+  # Enforce consistent spacing before and after keywords
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "before": {
+  #         "type": "boolean"
+  #       },
+  #       "after": {
+  #         "type": "boolean"
+  #       },
+  #       "overrides": {
+  #         "type": "object",
+  #         "properties": {
+  #           "abstract": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "as": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "async": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "await": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "boolean": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "break": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "byte": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "case": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "catch": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "char": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "class": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "const": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "continue": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "debugger": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "default": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "delete": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "do": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "double": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "else": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "enum": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "export": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "extends": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "false": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "final": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "finally": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "float": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "for": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "from": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "function": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "get": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "goto": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "if": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "implements": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "import": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "in": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "instanceof": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "int": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "interface": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "let": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "long": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "native": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "new": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "null": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "of": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "package": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "private": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "protected": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "public": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "return": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "set": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "short": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "static": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "super": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "switch": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "synchronized": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "this": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "throw": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "throws": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "transient": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "true": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "try": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "typeof": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "var": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "void": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "volatile": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "while": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "with": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "yield": {
+  #             "type": "object",
+  #             "properties": {
+  #               "before": {
+  #                 "type": "boolean"
+  #               },
+  #               "after": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/keyword-spacing
+  keyword-spacing: 0
+
+  # Enforce position of line comments
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "above",
+  #           "beside"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "position": {
+  #             "enum": [
+  #               "above",
+  #               "beside"
+  #             ]
+  #           },
+  #           "ignorePattern": {
+  #             "type": "string"
+  #           },
+  #           "applyDefaultPatterns": {
+  #             "type": "boolean"
+  #           },
+  #           "applyDefaultIgnorePatterns": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/line-comment-position
+  line-comment-position: 0
+
+  # Enforce consistent linebreak style
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "unix",
+  #       "windows"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/linebreak-style
+  linebreak-style: 0
+
+  # Require empty lines around comments
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "beforeBlockComment": {
+  #         "type": "boolean"
+  #       },
+  #       "afterBlockComment": {
+  #         "type": "boolean"
+  #       },
+  #       "beforeLineComment": {
+  #         "type": "boolean"
+  #       },
+  #       "afterLineComment": {
+  #         "type": "boolean"
+  #       },
+  #       "allowBlockStart": {
+  #         "type": "boolean"
+  #       },
+  #       "allowBlockEnd": {
+  #         "type": "boolean"
+  #       },
+  #       "allowClassStart": {
+  #         "type": "boolean"
+  #       },
+  #       "allowClassEnd": {
+  #         "type": "boolean"
+  #       },
+  #       "allowObjectStart": {
+  #         "type": "boolean"
+  #       },
+  #       "allowObjectEnd": {
+  #         "type": "boolean"
+  #       },
+  #       "allowArrayStart": {
+  #         "type": "boolean"
+  #       },
+  #       "allowArrayEnd": {
+  #         "type": "boolean"
+  #       },
+  #       "ignorePattern": {
+  #         "type": "string"
+  #       },
+  #       "applyDefaultIgnorePatterns": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/lines-around-comment
+  lines-around-comment:
+    - warn
+    - !!map
+        beforeBlockComment: false
+        afterBlockComment: false
+        beforeLineComment: false
+        afterLineComment: false
+        allowBlockStart: false
+        allowBlockEnd: false
+        allowObjectStart: true
+        allowObjectEnd: false
+        allowArrayStart: true
+        allowArrayEnd: false
+        allowClassStart: true
+        allowClassEnd: false
+        ignorePattern: "\\?"
+
+  # Require or disallow an empty line between class members
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptAfterSingleLine": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/lines-between-class-members
+  lines-between-class-members: 0
+
+  # Enforce a maximum depth that blocks can be nested
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "maximum": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-depth
+  max-depth:
+    - error
+    - !!map
+        max: 5
+
+  # Enforce a maximum line length
+  # @schema:
+  # [
+  #   {
+  #     "anyOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "code": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "comments": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "tabWidth": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "ignorePattern": {
+  #             "type": "string"
+  #           },
+  #           "ignoreComments": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreStrings": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreUrls": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreTemplateLiterals": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreRegExpLiterals": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreTrailingComments": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       }
+  #     ]
+  #   },
+  #   {
+  #     "anyOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "code": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "comments": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "tabWidth": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "ignorePattern": {
+  #             "type": "string"
+  #           },
+  #           "ignoreComments": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreStrings": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreUrls": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreTemplateLiterals": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreRegExpLiterals": {
+  #             "type": "boolean"
+  #           },
+  #           "ignoreTrailingComments": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       }
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "code": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "comments": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "tabWidth": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "ignorePattern": {
+  #         "type": "string"
+  #       },
+  #       "ignoreComments": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreStrings": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreUrls": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreTemplateLiterals": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreRegExpLiterals": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreTrailingComments": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-len
+  max-len:
+    - warn
+    - !!map
+        code: 120
+        ignoreUrls: true
+        ignoreTemplateLiterals: true
+        ignoreRegExpLiterals: true
+
+  # Enforce a maximum number of lines per file
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "skipComments": {
+  #             "type": "boolean"
+  #           },
+  #           "skipBlankLines": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-lines
+  max-lines: 0
+
+  # Enforce a maximum depth that callbacks can be nested
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "maximum": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-nested-callbacks
+  max-nested-callbacks:
+    - error
+    - !!map
+        max: 3
+
+  # Enforce a maximum number of parameters in function definitions
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "maximum": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-params
+  max-params:
+    - error
+    - !!map
+        max: 5
+
+  # Enforce a maximum number of statements allowed per line
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "max": {
+  #         "type": "integer",
+  #         "minimum": 1
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-statements-per-line
+  max-statements-per-line: 0
+
+  # Enforce a maximum number of statements allowed in function blocks
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "maximum": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           },
+  #           "max": {
+  #             "type": "integer",
+  #             "minimum": 0
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "ignoreTopLevelFunctions": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/max-statements
+  max-statements: 0
+
+  # Enforce a particular style for multiline comments
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "starred-block",
+  #       "separate-lines",
+  #       "bare-block"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/multiline-comment-style
+  multiline-comment-style: 0
+
+  # Enforce newlines between operands of ternary expressions
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "always-multiline",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/multiline-ternary
+  multiline-ternary: 0
+
+  # Require constructor names to begin with a capital letter
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "newIsCap": {
+  #         "type": "boolean"
+  #       },
+  #       "capIsNew": {
+  #         "type": "boolean"
+  #       },
+  #       "newIsCapExceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "newIsCapExceptionPattern": {
+  #         "type": "string"
+  #       },
+  #       "capIsNewExceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "capIsNewExceptionPattern": {
+  #         "type": "string"
+  #       },
+  #       "properties": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/new-cap
+  new-cap: 1
+
+  # Require parentheses when invoking a constructor with no arguments
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/new-parens
+  new-parens: 0
+
+  # Require a newline after each call in a method chain
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "ignoreChainWithDepth": {
+  #         "type": "integer",
+  #         "minimum": 1,
+  #         "maximum": 10
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/newline-per-chained-call
+  newline-per-chained-call: 0
+
+  # Disallow `Array` constructors
+  # @docs: https://eslint.org/docs/rules/no-array-constructor
+  no-array-constructor: 0
+
+  # Disallow bitwise operators
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allow": {
+  #         "type": "array",
+  #         "items": {
+  #           "enum": [
+  #             "^",
+  #             "|",
+  #             "&",
+  #             "<<",
+  #             ">>",
+  #             ">>>",
+  #             "^=",
+  #             "|=",
+  #             "&=",
+  #             "<<=",
+  #             ">>=",
+  #             ">>>=",
+  #             "~"
+  #           ]
+  #         },
+  #         "uniqueItems": true
+  #       },
+  #       "int32Hint": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-bitwise
+  no-bitwise: 0
+
+  # Disallow `continue` statements
+  # @docs: https://eslint.org/docs/rules/no-continue
+  no-continue: 0
+
+  # Disallow inline comments after code
+  # @docs: https://eslint.org/docs/rules/no-inline-comments
+  no-inline-comments: 0
+
+  # Disallow `if` statements as the only statement in `else` blocks
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-lonely-if
+  no-lonely-if: 0
+
+  # Disallow mixed binary operators
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "groups": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "array",
+  #           "items": {
+  #             "enum": [
+  #               "+",
+  #               "-",
+  #               "*",
+  #               "/",
+  #               "%",
+  #               "**",
+  #               "&",
+  #               "|",
+  #               "^",
+  #               "~",
+  #               "<<",
+  #               ">>",
+  #               ">>>",
+  #               "==",
+  #               "!=",
+  #               "===",
+  #               "!==",
+  #               ">",
+  #               ">=",
+  #               "<",
+  #               "<=",
+  #               "&&",
+  #               "||",
+  #               "in",
+  #               "instanceof"
+  #             ]
+  #           },
+  #           "minItems": 2,
+  #           "uniqueItems": true
+  #         },
+  #         "uniqueItems": true
+  #       },
+  #       "allowSamePrecedence": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-mixed-operators
+  no-mixed-operators: 0
+
+  # Disallow mixed spaces and tabs for indentation
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "smart-tabs",
+  #       true,
+  #       false
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-mixed-spaces-and-tabs
+  no-mixed-spaces-and-tabs: 0
+
+  # Disallow use of chained assignment expressions
+  # @docs: https://eslint.org/docs/rules/no-multi-assign
+  no-multi-assign: 0
+
+  # Disallow multiple empty lines
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "max": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "maxEOF": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       },
+  #       "maxBOF": {
+  #         "type": "integer",
+  #         "minimum": 0
+  #       }
+  #     },
+  #     "required": [
+  #       "max"
+  #     ],
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-multiple-empty-lines
+  no-multiple-empty-lines:
+    - warn
+    - !!map
+        max: 3
+        maxBOF: 1
+        maxEOF: 2
+
+  # Disallow negated conditions
+  # @docs: https://eslint.org/docs/rules/no-negated-condition
+  no-negated-condition: 0
+
+  # Disallow nested ternary expressions
+  # @docs: https://eslint.org/docs/rules/no-nested-ternary
+  no-nested-ternary: 0
+
+  # Disallow `Object` constructors
+  # @docs: https://eslint.org/docs/rules/no-new-object
+  no-new-object: 1
+
+  # Disallow the unary operators `++` and `--`
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowForLoopAfterthoughts": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-plusplus
+  no-plusplus: 0
+
+  # Disallow specified syntax
+  # @docs: https://eslint.org/docs/rules/no-restricted-syntax
+  no-restricted-syntax: 0
+
+  # Disallow all tabs
+  # @docs: https://eslint.org/docs/rules/no-tabs
+  no-tabs: 0
+
+  # Disallow ternary operators
+  # @docs: https://eslint.org/docs/rules/no-ternary
+  no-ternary: 0
+
+  # Disallow trailing whitespace at the end of lines
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "skipBlankLines": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreComments": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-trailing-spaces
+  no-trailing-spaces: 0
+
+  # Disallow dangling underscores in identifiers
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allow": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "allowAfterThis": {
+  #         "type": "boolean"
+  #       },
+  #       "allowAfterSuper": {
+  #         "type": "boolean"
+  #       },
+  #       "enforceInMethodNames": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-underscore-dangle
+  no-underscore-dangle: 0
+
+  # Disallow ternary operators when simpler alternatives exist
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "defaultAssignment": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-unneeded-ternary
+  no-unneeded-ternary: 0
+
+  # Disallow whitespace before properties
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-whitespace-before-property
+  no-whitespace-before-property: 0
+
+  # Enforce the location of single-line statements
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "beside",
+  #       "below",
+  #       "any"
+  #     ]
+  #   },
+  #   {
+  #     "properties": {
+  #       "overrides": {
+  #         "properties": {
+  #           "if": {
+  #             "enum": [
+  #               "beside",
+  #               "below",
+  #               "any"
+  #             ]
+  #           },
+  #           "else": {
+  #             "enum": [
+  #               "beside",
+  #               "below",
+  #               "any"
+  #             ]
+  #           },
+  #           "while": {
+  #             "enum": [
+  #               "beside",
+  #               "below",
+  #               "any"
+  #             ]
+  #           },
+  #           "do": {
+  #             "enum": [
+  #               "beside",
+  #               "below",
+  #               "any"
+  #             ]
+  #           },
+  #           "for": {
+  #             "enum": [
+  #               "beside",
+  #               "below",
+  #               "any"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/nonblock-statement-body-position
+  nonblock-statement-body-position: 0
+
+  # Enforce consistent line breaks inside braces
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "oneOf": [
+  #           {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           {
+  #             "type": "object",
+  #             "properties": {
+  #               "multiline": {
+  #                 "type": "boolean"
+  #               },
+  #               "minProperties": {
+  #                 "type": "integer",
+  #                 "minimum": 0
+  #               },
+  #               "consistent": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false,
+  #             "minProperties": 1
+  #           }
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "ObjectExpression": {
+  #             "oneOf": [
+  #               {
+  #                 "enum": [
+  #                   "always",
+  #                   "never"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "multiline": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "minProperties": {
+  #                     "type": "integer",
+  #                     "minimum": 0
+  #                   },
+  #                   "consistent": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false,
+  #                 "minProperties": 1
+  #               }
+  #             ]
+  #           },
+  #           "ObjectPattern": {
+  #             "oneOf": [
+  #               {
+  #                 "enum": [
+  #                   "always",
+  #                   "never"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "multiline": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "minProperties": {
+  #                     "type": "integer",
+  #                     "minimum": 0
+  #                   },
+  #                   "consistent": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false,
+  #                 "minProperties": 1
+  #               }
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false,
+  #         "minProperties": 1
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/object-curly-newline
+  object-curly-newline:
+    - error
+    - !!map
+        ObjectExpression:
+          multiline: true
+          minProperties: 1
+        ObjectPattern:
+          multiline: true
+          minProperties: 1
+        ImportDeclaration: always
+        ExportDeclaration:
+          multiline: true
+          minProperties: 1
+
+  # Enforce consistent spacing inside braces
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "arraysInObjects": {
+  #         "type": "boolean"
+  #       },
+  #       "objectsInObjects": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/object-curly-spacing
+  object-curly-spacing: 0
+
+  # Enforce placing object properties on separate lines
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowMultiplePropertiesPerLine": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/object-property-newline
+  object-property-newline: 0
+
+  # Require or disallow newlines around variable declarations
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "initializations"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/one-var-declaration-per-line
+  one-var-declaration-per-line:
+    - warn
+    - always
+
+  # Enforce variables to be declared either together or separately in
+  # functions
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "var": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "let": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "const": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "initialized": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "uninitialized": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/one-var
+  one-var:
+    - error
+    - never
+
+  # Require or disallow assignment operator shorthand where possible
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/operator-assignment
+  operator-assignment: 0
+
+  # Enforce consistent linebreak style for operators
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "after",
+  #       "before",
+  #       "none",
+  #       null
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "overrides": {
+  #         "type": "object",
+  #         "properties": {
+  #           "anyOf": {
+  #             "type": "string",
+  #             "enum": [
+  #               "after",
+  #               "before",
+  #               "none",
+  #               "ignore"
+  #             ]
+  #           }
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/operator-linebreak
+  operator-linebreak:
+    - warn
+    - before
+
+  # Require or disallow padding within blocks
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "blocks": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "switches": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "classes": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false,
+  #         "minProperties": 1
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/padded-blocks
+  padded-blocks: 0
+
+  # Require or disallow padding lines between statements
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/padding-line-between-statements
+  padding-line-between-statements:
+    - warn
+    - !!map
+        blankLine: always
+        prev: "*"
+        next:
+          - break
+          - continue
+    - !!map
+        blankLine: never
+        prev:
+          - case
+          - if
+        next:
+          - return
+          - break
+          - continue
+    - !!map
+        blankLine: always
+        prev: block-like
+        next: block-like
+    - !!map
+        blankLine: always
+        prev: "*"
+        next: directive
+    - !!map
+        blankLine: always
+        prev: directive
+        next: "*"
+    - !!map
+        blankLine: never
+        prev: if
+        next: if
+    - !!map
+        blankLine: never
+        prev: directive
+        next: directive
+    - !!map
+        blankLine: always
+        prev: "*"
+        next: cjs-import
+    - !!map
+        blankLine: always
+        prev: cjs-import
+        next: "*"
+    - !!map
+        blankLine: any
+        prev: cjs-import
+        next: cjs-import
+    - !!map
+        blankLine: always
+        prev: "*"
+        next: cjs-export
+    - !!map
+        blankLine: always
+        prev: cjs-export
+        next: "*"
+    - !!map
+        blankLine: any
+        prev: cjs-export
+        next: cjs-export
+    - !!map
+        blankLine: always
+        prev: "*"
+        next: import
+    - !!map
+        blankLine: always
+        prev: import
+        next: "*"
+    - !!map
+        blankLine: any
+        prev: import
+        next: import
+    - !!map
+        blankLine: always
+        prev: "*"
+        next: export
+    - !!map
+        blankLine: always
+        prev: export
+        next: "*"
+    - !!map
+        blankLine: any
+        prev: export
+        next: export
+
+
+  # Require quotes around object literal property names
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/quote-props
+  quote-props:
+    - error
+    - as-needed
+
+  # Enforce the consistent use of either backticks, double, or single quotes
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "single",
+  #       "double",
+  #       "backtick"
+  #     ]
+  #   },
+  #   {
+  #     "anyOf": [
+  #       {
+  #         "enum": [
+  #           "avoid-escape"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "avoidEscape": {
+  #             "type": "boolean"
+  #           },
+  #           "allowTemplateLiterals": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/quotes
+  quotes:
+    - error
+    - single
+    - !!map
+        allowTemplateLiterals: true
+
+  # Require JSDoc comments
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "require": {
+  #         "type": "object",
+  #         "properties": {
+  #           "ClassDeclaration": {
+  #             "type": "boolean"
+  #           },
+  #           "MethodDefinition": {
+  #             "type": "boolean"
+  #           },
+  #           "FunctionDeclaration": {
+  #             "type": "boolean"
+  #           },
+  #           "ArrowFunctionExpression": {
+  #             "type": "boolean"
+  #           },
+  #           "FunctionExpression": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/require-jsdoc
+  require-jsdoc:
+    - warn
+    - require:
+        FunctionDeclaration: true
+        MethodDefinition: false
+        ClassDeclaration: true
+        ArrowFunctionExpression: false
+        FunctionExpression: false
+
+  # Enforce consistent spacing before and after semicolons
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "before": {
+  #         "type": "boolean"
+  #       },
+  #       "after": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/semi-spacing
+  semi-spacing:
+    - 2
+    - !!map
+        before: false
+        after: true
+
+  # Enforce location of semicolons
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "last",
+  #       "first"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/semi-style
+  semi-style: 0
+
+  # Require or disallow semicolons instead of ASI
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/semi
+  semi:
+    - 2
+    - always
+
+  # Require object keys to be sorted
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "asc",
+  #       "desc"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "caseSensitive": {
+  #         "type": "boolean"
+  #       },
+  #       "natural": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/sort-keys
+  sort-keys: 0
+
+  # Require variables within the same declaration block to be sorted
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "ignoreCase": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/sort-vars
+  sort-vars: 0
+
+  # Enforce consistent spacing before blocks
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "keywords": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "functions": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           },
+  #           "classes": {
+  #             "enum": [
+  #               "always",
+  #               "never"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/space-before-blocks
+  space-before-blocks: 0
+
+  # Enforce consistent spacing before `function` definition opening parenthesis
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "always",
+  #           "never"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "anonymous": {
+  #             "enum": [
+  #               "always",
+  #               "never",
+  #               "ignore"
+  #             ]
+  #           },
+  #           "named": {
+  #             "enum": [
+  #               "always",
+  #               "never",
+  #               "ignore"
+  #             ]
+  #           },
+  #           "asyncArrow": {
+  #             "enum": [
+  #               "always",
+  #               "never",
+  #               "ignore"
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/space-before-function-paren
+  space-before-function-paren:
+    - warn
+    - !!map
+        anonymous: always
+        named: always
+        asyncArrow: always
+
+  # Enforce consistent spacing inside parentheses
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "enum": [
+  #             "{}",
+  #             "[]",
+  #             "()",
+  #             "empty"
+  #           ]
+  #         },
+  #         "uniqueItems": true
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/space-in-parens
+  space-in-parens: 0
+
+  # Require spacing around infix operators
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "int32Hint": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/space-infix-ops
+  space-infix-ops: 0
+
+  # Enforce consistent spacing before or after unary operators
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "words": {
+  #         "type": "boolean"
+  #       },
+  #       "nonwords": {
+  #         "type": "boolean"
+  #       },
+  #       "overrides": {
+  #         "type": "object",
+  #         "additionalProperties": {
+  #           "type": "boolean"
+  #         }
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/space-unary-ops
+  space-unary-ops:
+    - error
+    - !!map
+        words: true
+        nonwords: false
+
+  # Enforce consistent spacing after the `//` or `/*` in a comment
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "exceptions": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "markers": {
+  #         "type": "array",
+  #         "items": {
+  #           "type": "string"
+  #         }
+  #       },
+  #       "line": {
+  #         "type": "object",
+  #         "properties": {
+  #           "exceptions": {
+  #             "type": "array",
+  #             "items": {
+  #               "type": "string"
+  #             }
+  #           },
+  #           "markers": {
+  #             "type": "array",
+  #             "items": {
+  #               "type": "string"
+  #             }
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       "block": {
+  #         "type": "object",
+  #         "properties": {
+  #           "exceptions": {
+  #             "type": "array",
+  #             "items": {
+  #               "type": "string"
+  #             }
+  #           },
+  #           "markers": {
+  #             "type": "array",
+  #             "items": {
+  #               "type": "string"
+  #             }
+  #           },
+  #           "balanced": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/spaced-comment
+  spaced-comment:
+    - warn
+    - always
+    - !!map
+        line:
+          markers:
+            - "?"
+            - ":"
+        block:
+          balanced: true
+          markers:
+            - "*"
+            - ":"
+
+
+  # Enforce spacing around colons of switch statements
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "before": {
+  #         "type": "boolean"
+  #       },
+  #       "after": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/switch-colon-spacing
+  switch-colon-spacing: 0
+
+  # Require or disallow spacing between template tags and their literals
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/template-tag-spacing
+  template-tag-spacing: 0
+
+  # Require or disallow Unicode byte order mark (BOM)
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/unicode-bom
+  unicode-bom: 0
+
+  # Require parenthesis around regex literals
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/wrap-regex
+  wrap-regex: 0
+
+
+################################################################################
+# 🠲 ECMAScript 6
+
+  # Require braces around arrow function bodies
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/arrow-body-style
+  arrow-body-style:
+    - warn
+    - as-needed
+
+  # Require parentheses around arrow function arguments
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "as-needed"
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "requireForBlockBody": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/arrow-parens
+  arrow-parens: 0
+
+  # Enforce consistent spacing before and after the arrow in arrow functions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "before": {
+  #         "type": "boolean"
+  #       },
+  #       "after": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/arrow-spacing
+  arrow-spacing: 0
+
+  # Require `super()` calls in constructors
+  # @docs: https://eslint.org/docs/rules/constructor-super
+  constructor-super: 0
+
+  # Enforce consistent spacing around `*` operators in generator functions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "before",
+  #           "after",
+  #           "both",
+  #           "neither"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "before": {
+  #             "type": "boolean"
+  #           },
+  #           "after": {
+  #             "type": "boolean"
+  #           },
+  #           "named": {
+  #             "oneOf": [
+  #               {
+  #                 "enum": [
+  #                   "before",
+  #                   "after",
+  #                   "both",
+  #                   "neither"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "before": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "after": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false
+  #               }
+  #             ]
+  #           },
+  #           "anonymous": {
+  #             "oneOf": [
+  #               {
+  #                 "enum": [
+  #                   "before",
+  #                   "after",
+  #                   "both",
+  #                   "neither"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "before": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "after": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false
+  #               }
+  #             ]
+  #           },
+  #           "method": {
+  #             "oneOf": [
+  #               {
+  #                 "enum": [
+  #                   "before",
+  #                   "after",
+  #                   "both",
+  #                   "neither"
+  #                 ]
+  #               },
+  #               {
+  #                 "type": "object",
+  #                 "properties": {
+  #                   "before": {
+  #                     "type": "boolean"
+  #                   },
+  #                   "after": {
+  #                     "type": "boolean"
+  #                   }
+  #                 },
+  #                 "additionalProperties": false
+  #               }
+  #             ]
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/generator-star-spacing
+  generator-star-spacing: 0
+
+  # Disallow reassigning class members
+  # @docs: https://eslint.org/docs/rules/no-class-assign
+  no-class-assign: 0
+
+  # Disallow arrow functions where they could be confused with comparisons
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowParens": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-confusing-arrow
+  no-confusing-arrow: 0
+
+  # Disallow reassigning `const` variables
+  # @docs: https://eslint.org/docs/rules/no-const-assign
+  no-const-assign: 0
+
+  # Disallow duplicate class members
+  # @docs: https://eslint.org/docs/rules/no-dupe-class-members
+  no-dupe-class-members: 0
+
+  # Disallow duplicate module imports
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "includeExports": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-duplicate-imports
+  no-duplicate-imports:
+    - error
+    - !!map
+        includeExports: true
+
+  # Disallow `new` operators with the `Symbol` object
+  # @docs: https://eslint.org/docs/rules/no-new-symbol
+  no-new-symbol: 0
+
+  # Disallow specified modules when loaded by `import`
+  # @docs: https://eslint.org/docs/rules/no-restricted-imports
+  no-restricted-imports: 0
+
+  # Disallow `this`/`super` before calling `super()` in constructors
+  # @docs: https://eslint.org/docs/rules/no-this-before-super
+  no-this-before-super: 0
+
+  # Disallow unnecessary computed property keys in object literals
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-useless-computed-key
+  no-useless-computed-key: 0
+
+  # Disallow unnecessary constructors
+  # @docs: https://eslint.org/docs/rules/no-useless-constructor
+  no-useless-constructor: 0
+
+  # Disallow renaming import, export, and destructured assignments to the same
+  # name
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "ignoreDestructuring": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreImport": {
+  #         "type": "boolean"
+  #       },
+  #       "ignoreExport": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/no-useless-rename
+  no-useless-rename: 0
+
+  # Require `let` or `const` instead of `var`
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/no-var
+  no-var: 0
+
+  # Require or disallow method and property shorthand syntax for object literals
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/object-shorthand
+  object-shorthand:
+    - warn
+    - consistent-as-needed
+
+  # Require using arrow functions for callbacks
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "allowNamedFunctions": {
+  #         "type": "boolean"
+  #       },
+  #       "allowUnboundThis": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/prefer-arrow-callback
+  prefer-arrow-callback: 0
+
+  # Require `const` declarations for variables that are never reassigned after
+  # declared
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "destructuring": {
+  #         "enum": [
+  #           "any",
+  #           "all"
+  #         ]
+  #       },
+  #       "ignoreReadBeforeAssign": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/prefer-const
+  prefer-const: 1
+
+  # Require destructuring from arrays and/or objects
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "VariableDeclarator": {
+  #             "type": "object",
+  #             "properties": {
+  #               "array": {
+  #                 "type": "boolean"
+  #               },
+  #               "object": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           },
+  #           "AssignmentExpression": {
+  #             "type": "object",
+  #             "properties": {
+  #               "array": {
+  #                 "type": "boolean"
+  #               },
+  #               "object": {
+  #                 "type": "boolean"
+  #               }
+  #             },
+  #             "additionalProperties": false
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "array": {
+  #             "type": "boolean"
+  #           },
+  #           "object": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   },
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "enforceForRenamedProperties": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/prefer-destructuring
+  prefer-destructuring: 0
+
+  # Disallow `parseInt()` and `Number.parseInt()` in favor of binary, octal, and
+  # hexadecimal literals
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/prefer-numeric-literals
+  prefer-numeric-literals: 0
+
+  # Require rest parameters instead of `arguments`
+  # @docs: https://eslint.org/docs/rules/prefer-rest-params
+  prefer-rest-params: 0
+
+  # Require spread operators instead of `.apply()`
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/prefer-spread
+  prefer-spread: 0
+
+  # Require template literals instead of string concatenation
+  # @fixable
+  # @docs: https://eslint.org/docs/rules/prefer-template
+  prefer-template: 0
+
+  # Require generator functions to contain `yield`
+  # @docs: https://eslint.org/docs/rules/require-yield
+  require-yield: 0
+
+  # Enforce spacing between rest and spread operators and their expressions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/rest-spread-spacing
+  rest-spread-spacing: 0
+
+  # Enforce sorted import declarations within modules
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "type": "object",
+  #     "properties": {
+  #       "ignoreCase": {
+  #         "type": "boolean"
+  #       },
+  #       "memberSyntaxSortOrder": {
+  #         "type": "array",
+  #         "items": {
+  #           "enum": [
+  #             "none",
+  #             "all",
+  #             "multiple",
+  #             "single"
+  #           ]
+  #         },
+  #         "uniqueItems": true,
+  #         "minItems": 4,
+  #         "maxItems": 4
+  #       },
+  #       "ignoreMemberSort": {
+  #         "type": "boolean"
+  #       }
+  #     },
+  #     "additionalProperties": false
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/sort-imports
+  sort-imports: 0
+
+  # Require symbol descriptions
+  # @docs: https://eslint.org/docs/rules/symbol-description
+  symbol-description: 0
+
+  # Require or disallow spacing around embedded expressions of template strings
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "enum": [
+  #       "always",
+  #       "never"
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/template-curly-spacing
+  template-curly-spacing: 0
+
+  # Require or disallow spacing around the `*` in `yield*` expressions
+  # @fixable
+  # @schema:
+  # [
+  #   {
+  #     "oneOf": [
+  #       {
+  #         "enum": [
+  #           "before",
+  #           "after",
+  #           "both",
+  #           "neither"
+  #         ]
+  #       },
+  #       {
+  #         "type": "object",
+  #         "properties": {
+  #           "before": {
+  #             "type": "boolean"
+  #           },
+  #           "after": {
+  #             "type": "boolean"
+  #           }
+  #         },
+  #         "additionalProperties": false
+  #       }
+  #     ]
+  #   }
+  # ]
+  # @docs: https://eslint.org/docs/rules/yield-star-spacing
+  yield-star-spacing: 0

@@ -1,0 +1,48 @@
+{
+  "preReleaseId": null,
+  "pkgFiles": ["package.json"],
+  "use": "git.tag",
+  "scripts": {
+    "afterBump": null,
+    "afterRelease": "echo Successfully released ${name} v${version} to ${repo.repository}.",
+    "beforeStage": "npx auto-changelog",
+    "beforeStart": "npm test",
+    "beforeStart": null,
+    "changelog": "npx auto-changelog --stdout --commit-limit false --unreleased --template ./__config__/scripts/changelog.hbs"
+  },
+  "git": {
+    "requireCleanWorkingDir": true,
+    "requireUpstream": true,
+    "addUntrackedFiles": false,
+    "commit": true,
+    "commitMessage": "Release ${version}",
+    "commitArgs": "",
+    "tag": true,
+    "tagName": "${version}",
+    "tagAnnotation": "Release ${version}",
+    "tagArgs": "",
+    "push": true,
+    "pushArgs": "",
+    "pushRepo": "origin"
+  },
+  "npm": {
+    "publish": false,
+    "publishPath": ".",
+    "tag": "latest",
+    "private": false,
+    "access": null,
+    "otp": null
+  },
+  "github": {
+    "release": true,
+    "releaseName": "Release ${version}",
+    "releaseNotes": null,
+    "preRelease": false,
+    "draft": false,
+    "tokenRef": "GITHUB_TOKEN",
+    "assets": null,
+    "host": null,
+    "timeout": 0,
+    "proxy": null
+  }
+}

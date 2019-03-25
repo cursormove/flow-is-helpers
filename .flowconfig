@@ -1,0 +1,119 @@
+# Flow Config
+# @docs: https://flow.org/en/docs/config/
+################################################################################
+# Tells Flow to include the specified files or directories
+# @docs: https://flow.org/en/docs/config/include/
+################################################################################
+[include]
+
+
+################################################################################
+# Tells Flow to ignore files matching the specified regular expressions
+# @docs: https://flow.org/en/docs/config/ignore/
+################################################################################
+[ignore]
+# Specific
+.build/*
+.dev/*
+.*/testBin/*
+.*/.git/.*
+.*/.nyc_output/.*
+.*/__tests__/.*
+.*/dist/.*
+.*/bin/.*
+.*/config/.*
+.*/build/.*
+.*/tools/.*
+# Node
+.*/node_modules/.*[^e]\.json$
+.*/node_modules/.*\(lib\|test\).*\.json$
+.*/node_modules/fbjs/.*
+.*/node_modules/editions/.*
+.*/node_modules/async.*
+.*/node_modules/babel.*
+.*/node_modules/bluebird.*
+.*/node_modules/config-chain.*
+.*/node_modules/conventional-changelog.*
+.*/node_modules/core-js.*
+.*/node_modules/escope.*
+.*/node_modules/eslint.*
+.*/node_modules/markdown.*
+.*/node_modules/uglify.*
+.*/node_modules/yargs.*
+
+
+################################################################################
+# Tells Flow to include the specified library definitions when type checking your code
+# @docs: https://flow.org/en/docs/config/libs/
+################################################################################
+[libs]
+flow-typed
+flow-typed/customdefs
+
+
+################################################################################
+# Flow Linting Options
+# @docs: https://flow.org/en/docs/config/lints/
+# @docs: https://flow.org/en/docs/linting
+################################################################################
+# [lints]
+
+
+################################################################################
+# Flow Options
+# @docs: https://flow.org/en/docs/config/options/
+################################################################################
+[options]
+# Set this to true to check all files, not just those with @flow
+all=false
+
+# Es2XXX proposal overrids
+esproposal.optional_chaining=ignore
+esproposal.class_instance_fields=enable
+esproposal.class_static_fields=enable
+esproposal.decorators=ignore
+
+# Have Flow treat underscore-prefixed class properties and methods as private
+munge_underscores=true
+
+# The maximum number of workers the Flow server can start
+server.max_workers=3
+
+# File extentions
+# @note 🠲 Should be keep in sync with webpack.config.js
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.jsx
+module.file_ext=.css
+# react-native(-web) extensions
+module.file_ext=.web.js
+# before adding .ios and .android, we will need to run flow with all extensions
+# https://github.com/facebook/flow/issues/945#issuecomment-228340395
+# module.file_ext=.ios.js
+# module.file_ext=.android.js
+
+# Allow skipping individual lines
+suppress_comment=(.|\n)*$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowFix
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
+suppress_comment=\\(.\\|\n\\)*\\$IgnoreGlobal
+
+# Webpack loaders
+# @explained 🠲 https://stackoverflow.com/questions/36912675/flow-required-module-not-found/37272883#37272883
+module.name_mapper='^!raw!.*$' -> '<PROJECT_ROOT>/flow/stub/url-loader.js'
+module.name_mapper='.*\.css$' -> '<PROJECT_ROOT>/flow/stub/css-modules.js'
+module.name_mapper='.*\.\(svg\|png\|jpg\|gif\)$' -> '<PROJECT_ROOT>/flow/stub/url-loader.js'
+
+# Babel module resolver
+# @note 🠲 Should be keep in sync with babel.config.js "module-resolver"
+module.name_mapper='^lib\/\(.*\)$' -> '<PROJECT_ROOT>/lib/\1'
+module.name_mapper='^util\/\(.*\)$' -> '<PROJECT_ROOT>/lib/util/\1'
+
+
+################################################################################
+# Which version of Flow you expect to use
+# @docs: https://flow.org/en/docs/config/version/
+################################################################################
+[version]
+^0.83.0
