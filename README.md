@@ -1,4 +1,4 @@
-# Predicate `truthy` Function via `%check` 🠲 `@artisin/flow-is-helpers`
+# Predicate `truthy` Function via `%check`
 
 ## Description
 
