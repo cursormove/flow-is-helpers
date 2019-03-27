@@ -13,10 +13,10 @@ Flow and Lodash's predicate functions (`is***`) don't work well together (if at 
 
 ```bash
 # npm
-npm i --save @artisin/flow-is-helpers
+npm i --save @cursormove/flow-is-helpers
 
 # yarn
-yarn add @artisin/flow-is-helpers
+yarn add @cursormove/flow-is-helpers
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ This Library is a drop-in replacement for Lodash's predicate functions. You shou
 ```js
 import {
   isString,
-} from '@artisin/flow-is-helpers';
+} from '@cursormove/flow-is-helpers';
 
 // Flow Type Check & truthy predicate function check
 const hello = (val: string) => isString(val) ? `Hello ${val}` : 'Hello Nobody';

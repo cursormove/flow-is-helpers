@@ -1,5 +1,5 @@
 {
-  "name": "@artisin/flow-is-helpers",
+  "name": "@cursormove/flow-is-helpers",
   "version": "2.0.0",
   "description": "Lodash (is) and additional Flow type %checks helpers.",
   "license": "MIT",
@@ -14,14 +14,14 @@
     "flow-checks",
     "flow-lodash",
     "flow-typed",
-    "@artisin"
+    "@cursormove"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/artisin/flow-is-helpers"
+    "url": "https://github.com/cursormove/flow-is-helpers"
   },
   "bugs": {
-    "url": "https://github.com/artisin/flow-is-helpers/issues"
+    "url": "https://github.com/cursormove/flow-is-helpers/issues"
   },
   "scripts": {
     "build:browser": "env-cmd production,browser redrun webpack:build -S",

@@ -1,11 +1,11 @@
 # CONTRIBUTING
 
-A healthy community is a contributing community, and contributions are welcomed and appreciated with open hearts and open fingers. First things first, make sure you [search the issue tracker](https://github.com/artisin/flow-is-helpers/issues) to ensure your issue/fix/update has not previously been discussed and/or fixed in the `master`. Additionally, if you're planning to implement a new feature, change the API, or any change that will take over a handful of minutes, please create an issue first and wait for a response from one of the maintainers. Otherwise, there are no guarantees your hard work will be merged, and then we will feel shitty that you feel shitty since all your efforts will have been for naught.
+A healthy community is a contributing community, and contributions are welcomed and appreciated with open hearts and open fingers. First things first, make sure you [search the issue tracker](https://github.com/cursormove/flow-is-helpers/issues) to ensure your issue/fix/update has not previously been discussed and/or fixed in the `master`. Additionally, if you're planning to implement a new feature, change the API, or any change that will take over a handful of minutes, please create an issue first and wait for a response from one of the maintainers. Otherwise, there are no guarantees your hard work will be merged, and then we will feel shitty that you feel shitty since all your efforts will have been for naught.
 
 
 ## Issue Tracker
 
-The [issue tracker](https://github.com/artisin/flow-is-helpers/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests), and [submitting pull requests](#pull-requests). Please respect the following guidelines:
+The [issue tracker](https://github.com/cursormove/flow-is-helpers/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests), and [submitting pull requests](#pull-requests). Please respect the following guidelines:
 
 + Please **do not** use the issue tracker for personal support requests (use [Stack Overflow](https://stackoverflow.com/questions/tagged/flow-is-helpers)).
 + Please **do not** post comments consisting solely of "+1" or ":+1:".
@@ -18,7 +18,7 @@ A "bug" is defined as a demonstrable problem that is caused by the code in the r
 
 __Guidelines for bug reports__:
 
-1. Use the GitHub [issue](https://github.com/artisin/flow-is-helpers/issues) search, and check if the issue has already been reported.
+1. Use the GitHub [issue](https://github.com/cursormove/flow-is-helpers/issues) search, and check if the issue has already been reported.
 2. Try to reproduce the bug using the latest `master` (or `development` if present) branch in the repository.
 3. Isolate the problem, and ideally, create a test case and/or upload the code to a repository or post the code inline if the size is reasonable.
 
@@ -44,7 +44,7 @@ Feature requests are welcomed. But take a moment to find out whether your idea f
    ```bash
    git clone https://github.com/<your-username>/flow-is-helpers.git
    cd flow-is-helpers
-   git remote add upstream https://github.com/artisin/flow-is-helpers.git
+   git remote add upstream https://github.com/cursormove/flow-is-helpers.git
    ```
 
 2. Link `flow-is-helpers`, to symlink the package folder during development.
@@ -99,4 +99,4 @@ Feature requests are welcomed. But take a moment to find out whether your idea f
 
 # License
 
-**IMPORTANT:** By contributing your code, you agree to license your contribution under the [MIT](https://github.com/artisin/flow-is-helpers/blob/master/LICENSE.txt) License.
+**IMPORTANT:** By contributing your code, you agree to license your contribution under the [MIT](https://github.com/cursormove/flow-is-helpers/blob/master/LICENSE.txt) License.

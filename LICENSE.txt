@@ -1,7 +1,7 @@
 The MIT License
 
-Copyright (c) 2018 te schultz
-https://github.com/artisin/flow-is-helpers
+Copyright (c) 2018 Te Schultz - cursormove
+https://github.com/cursormove/flow-is-helpers
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
