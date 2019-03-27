@@ -10,10 +10,7 @@ _The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 
 ### Merged
 
-- **Breaking change:** Release 2.0.0  __⊶__ [`ba48222`](https://github.com/artisin/flow-is-helpers/commit/ba48222527668649171470ef7c21e9b09e958652)
-  + Update dependencies
-    * `@babel*`
-    * `core-js@2` → `core-js@3`
+- Release 1.2.0  __⊶__ [`#22`](https://github.com/artisin/flow-is-helpers/pull/22)
 
 ## Release: v.[1.2.0](https://github.com/artisin/flow-is-helpers/compare/1.1.0...1.2.0) 🠲 2019-03-27
 
