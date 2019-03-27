@@ -6,6 +6,26 @@ _The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## Release: v.[1.0.1](https://github.com/artisin/flow-is-helpers/compare/1.0.0...1.0.1) 🠲 2019-03-27
+
+### Merged
+
+- docs(README): add wercker badge → #15  __⊶__ [`#17`](https://github.com/artisin/flow-is-helpers/pull/17)
+- update(release-it): update/fix release-it and auto-changelog → #12  __⊶__ [`#16`](https://github.com/artisin/flow-is-helpers/pull/16)
+- Release 1.0.0  __⊶__ [`#13`](https://github.com/artisin/flow-is-helpers/pull/13)
+- init(wercker): init commit → #10  __⊶__ [`#11`](https://github.com/artisin/flow-is-helpers/pull/11)
+
+### Fixed
+
+- docs(README): add wercker badge → #15  __⊶__ [`#15`](https://github.com/artisin/flow-is-helpers/issues/15)
+- update(release-it): update/fix release-it and auto-changelog → #12  __⊶__ [`#12`](https://github.com/artisin/flow-is-helpers/issues/12)
+- init(__config__): add changelog-preview → #14  __⊶__ [`#14`](https://github.com/artisin/flow-is-helpers/issues/14)
+- init(wercker): init commit → #10  __⊶__ [`#10`](https://github.com/artisin/flow-is-helpers/issues/10)
+
+### Commits
+
+- Release 1.0.1  __⊶__ [`f490e4e`](https://github.com/artisin/flow-is-helpers/commit/f490e4e26d333baef1719c3cf84920344da3512a)
+
 ## Release: v.[1.0.0](https://github.com/artisin/flow-is-helpers/compare/0.1.0...1.0.0) 🠲 2019-03-26
 
 ### Merged
