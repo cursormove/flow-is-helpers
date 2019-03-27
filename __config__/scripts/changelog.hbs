@@ -1,13 +1,40 @@
+# CHANGELOG
+
+All notable changes to this project will be documented in this file.
+
+_The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html)._
+
+---
+
 {{#each releases}}
-  {{#if @first}}
+  {{#if href}}
+    ## Release: v.[{{title}}]({{href}}){{#if tag}} 🠲 {{isoDate}}{{/if}}
+  {{else}}
+    ## Release: v.{{title}}{{#if tag}} 🠲 {{isoDate}}{{/if}}
+  {{/if}}
+
+  {{#if summary}}
+    {{summary}}
+  {{/if}}
+
+  {{#if merges}}
+    ### Merged
+
     {{#each merges}}
-      - {{{message}}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}
-    {{/each}}
-    {{#each fixes}}
-      - {{{commit.subject}}}{{#each fixes}}{{#if href}} [`#{{id}}`]({{href}}){{/if}}{{/each}}
-    {{/each}}
-    {{#each commits}}
-      - {{#if breaking}}**Breaking change:** {{/if}}{{{subject}}}{{#if href}} [`{{shorthash}}`]({{href}}){{/if}}
+      - {{{message}}} {{#if href}} __⊶__ [`#{{id}}`]({{href}}){{/if}}
     {{/each}}
   {{/if}}
+
+  {{#if fixes}}
+    ### Fixed
+
+    {{#each fixes}}
+      - {{{commit.subject}}}{{#each fixes}} {{#if href}} __⊶__ [`#{{id}}`]({{href}}){{/if}}{{/each}}
+    {{/each}}
+  {{/if}}
+
+  {{#commit-list commits heading='### Commits'}}
+    - {{#if breaking}}**Breaking change:** {{/if}}{{{subject}}} {{#if href}} __⊶__ [`{{shorthash}}`]({{href}}){{/if}}
+  {{/commit-list}}
+
 {{/each}}
