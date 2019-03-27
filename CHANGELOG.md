@@ -6,6 +6,20 @@ _The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## Release: v.[1.0.0](https://github.com/artisin/flow-is-helpers/compare/0.1.0...1.0.0) 🠲 2019-03-26
+
+### Merged
+
+- docs(CHANGELOG): update CHANGELOG → #8  __⊶__ [`#9`](https://github.com/artisin/flow-is-helpers/pull/9)
+
+### Fixed
+
+- docs(CHANGELOG): update CHANGELOG → #8  __⊶__ [`#8`](https://github.com/artisin/flow-is-helpers/issues/8)
+
+### Commits
+
+- Release 1.0.0  __⊶__ [`ea46e0c`](https://github.com/artisin/flow-is-helpers/commit/ea46e0cdd4faf3cd38dbd4f4dbe04bbe55aacc93)
+
 ## Release: v.[0.1.0](https://github.com/artisin/flow-is-helpers/compare/0.0.1...0.1.0) 🠲 2019-03-26
 
 ### Merged
