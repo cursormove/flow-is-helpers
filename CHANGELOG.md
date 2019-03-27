@@ -6,6 +6,24 @@ _The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## Release: v.[2.1.0](https://github.com/cursormove/flow-is-helpers/compare/2.0.0...2.1.0) 🠲 2019-03-27
+
+### Merged
+
+- fix(lib): fix isAction - alway return boolean → #4  __⊶__ [`#5`](https://github.com/cursormove/flow-is-helpers/pull/5)
+- docs(README): update wercker badge → #1  __⊶__ [`#2`](https://github.com/cursormove/flow-is-helpers/pull/2)
+- Release 2.0.0  __⊶__ [`#23`](https://github.com/cursormove/flow-is-helpers/pull/23)
+
+### Fixed
+
+- fix(lib): fix isAction - alway return boolean → #4  __⊶__ [`#4`](https://github.com/cursormove/flow-is-helpers/issues/4)
+- docs(README): update wercker badge → #1  __⊶__ [`#1`](https://github.com/cursormove/flow-is-helpers/issues/1)
+
+### Commits
+
+- init(transfer): transfer from @artisin to @cursormove → ★  __⊶__ [`09f50f9`](https://github.com/cursormove/flow-is-helpers/commit/09f50f91b87c99f378bc72fc0e9288a0222eed3e)
+- Release 2.0.0 → #20  __⊶__ [`96fb51e`](https://github.com/cursormove/flow-is-helpers/commit/96fb51e32c0ba5d859bed689c8f4e4d99d5ee97b)
+
 ## Release: v.[2.0.0](https://github.com/cursormove/flow-is-helpers/compare/1.2.0...2.0.0) 🠲 2019-03-27
 
 ### Merged

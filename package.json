@@ -1,6 +1,6 @@
 {
   "name": "@cursormove/flow-is-helpers",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Lodash (is) and additional Flow type %checks helpers.",
   "license": "MIT",
   "author": "te schultz",
