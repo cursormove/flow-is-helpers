@@ -6,6 +6,29 @@ _The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) 
 
 ---
 
+## Release: v.[2.0.0](https://github.com/artisin/flow-is-helpers/compare/1.2.0...2.0.0) 🠲 2019-03-27
+
+### Merged
+
+- **Breaking change:** Release 2.0.0  __⊶__ [`ba48222`](https://github.com/artisin/flow-is-helpers/commit/ba48222527668649171470ef7c21e9b09e958652)
+  + Update dependencies
+    * `@babel*`
+    * `core-js@2` → `core-js@3`
+
+## Release: v.[1.2.0](https://github.com/artisin/flow-is-helpers/compare/1.1.0...1.2.0) 🠲 2019-03-27
+
+### Merged
+
+- update(dependencies): update dependencies as well as the needed update → #18  __⊶__ [`#19`](https://github.com/artisin/flow-is-helpers/pull/19)
+
+### Fixed
+
+- update(dependencies): update dependencies as well as the needed update → #18  __⊶__ [`#18`](https://github.com/artisin/flow-is-helpers/issues/18)
+
+### Commits
+
+- Release 1.2.0  __⊶__ [`9c9e457`](https://github.com/artisin/flow-is-helpers/commit/9c9e457d78643f01afd52ebeba53aae415371f1f)
+
 ## Release: v.[1.1.0](https://github.com/artisin/flow-is-helpers/compare/1.0.1...1.1.0) 🠲 2019-03-27
 
 ### Commits
