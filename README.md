@@ -1,4 +1,5 @@
 # Predicate `truthy` Function via `%check`
+[![wercker status](https://app.wercker.com/status/ea52eaeb83d4867c197279a6a9c10e84/s/master "wercker status")](https://app.wercker.com/project/byKey/ea52eaeb83d4867c197279a6a9c10e84)
 
 ## Description
 
