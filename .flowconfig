@@ -116,4 +116,4 @@ module.name_mapper='^util\/\(.*\)$' -> '<PROJECT_ROOT>/lib/util/\1'
 # @docs: https://flow.org/en/docs/config/version/
 ################################################################################
 [version]
-^0.83.0
+^0.95.1

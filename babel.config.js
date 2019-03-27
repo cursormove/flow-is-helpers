@@ -39,9 +39,11 @@ const babelConfig = function babelConfig (api) {
           modules: 'umd',
           shippedProposals: true,
           useBuiltIns: 'usage',
+          corejs: 3,
           targets: {
             browsers: [
               '>0.2%',
+              'last 1 version',
               'not dead',
               'not ie <= 11',
               'not op_mini all',
@@ -61,8 +63,9 @@ const babelConfig = function babelConfig (api) {
           modules: false,
           shippedProposals: true,
           useBuiltIns: 'usage',
+          corejs: 3,
           targets: {
-            node: '10.7.0',
+            node: '11.3.0',
           }
         }],
       ]
@@ -201,7 +204,7 @@ const babelConfig = function babelConfig (api) {
     ['@babel/plugin-transform-runtime', {
       helpers: true,
       regenerator: true,
-      corejs: 2,
+      corejs: 3,
       useESModules: false,
     }],
   ];
